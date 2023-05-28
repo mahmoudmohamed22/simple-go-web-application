@@ -5,7 +5,7 @@ pipeline {
         stage('CI') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                git 'https://github.com/mahmoudmohamed22/simple-go-web-application.git'
+                git credentialsId:'mygithub' ,url:'https://github.com/mahmoudmohamed22/simple-go-web-application.git', branch:'main'
                 sh """
 
                 docker login -u ${USERNAME} -p ${PASSWORD}
@@ -18,7 +18,8 @@ pipeline {
          stage('CD') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                git 'https://github.com/mahmoudmohamed22/simple-go-web-application.git'
+                git credentialsId:'mygithub' ,url:'https://github.com/mahmoudmohamed22/simple-go-web-application.git', branch:'main'
+
                 sh """
                 cd ./Deployment-App
                 docker login -u ${USERNAME} -p ${PASSWORD}
