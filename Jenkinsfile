@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+     agent {
+    node {
+        label 'bastionhost'
+     }
+   }
 
     stages {
         stage('CI') {
