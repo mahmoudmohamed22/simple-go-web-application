@@ -5,7 +5,7 @@ pipeline {
         stage('CI') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                git credentialsId:'mygithub' ,url:'https://github.com/mahmoudmohamed22/simple-go-web-application.git', branch:'main'
+                git credentialsId:'github' ,url:'https://github.com/mahmoudmohamed22/simple-go-web-application.git', branch:'main'
                 sh """
 
                 docker login -u ${USERNAME} -p ${PASSWORD}
